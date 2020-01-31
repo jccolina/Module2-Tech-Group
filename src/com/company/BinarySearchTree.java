@@ -77,6 +77,9 @@ public class BinarySearchTree {
 
     private boolean contains(Node current, int value) {
         boolean result = false;
+        if(current == null){
+            return false;
+        }
         if (current.getValue() == value){
             return true;
         }

@@ -1,6 +1,7 @@
 package com.company;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Ignore;
@@ -77,5 +78,7 @@ public class BinarySearchTreeTest {
         assertTrue(myTree.contains(7));
         assertTrue(myTree.contains(9));
         assertTrue(myTree.contains(3));
+        assertFalse(myTree.contains(0));
+        assertFalse(myTree.contains(100));
     }
 }
