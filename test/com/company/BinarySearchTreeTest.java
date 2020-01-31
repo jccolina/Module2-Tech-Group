@@ -46,12 +46,19 @@ public class BinarySearchTreeTest {
         BinarySearchTree myTree = new BinarySearchTree();
 
         myTree.add(8);
+        assertEquals(0, myTree.getLevel());
         myTree.add(10);
+        assertEquals(1, myTree.getLevel());
         myTree.add(6);
+        assertEquals(1, myTree.getLevel());
         myTree.add(2);
+        assertEquals(2, myTree.getLevel());
         myTree.add(5);
+        assertEquals(3, myTree.getLevel());
         myTree.add(7);
+        assertEquals(3, myTree.getLevel());
         myTree.add(9);
+        assertEquals(3, myTree.getLevel());
         myTree.add(3);
 
         assertEquals(4, myTree.getLevel());

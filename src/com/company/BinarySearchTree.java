@@ -30,7 +30,7 @@ public class BinarySearchTree {
             if (cursor.getRight() == null) {
                 cursor.setRight(newNode);
                 result = true;
-                if(currentLevel > this.level){
+                if (currentLevel > this.level) {
                     this.level = currentLevel;
                 }
             } else {
@@ -40,7 +40,7 @@ public class BinarySearchTree {
             if (cursor.getLeft() == null) {
                 cursor.setLeft(newNode);
                 result = true;
-                if(currentLevel > this.level){
+                if (currentLevel > this.level) {
                     this.level = currentLevel;
                 }
             } else {
@@ -77,7 +77,7 @@ public class BinarySearchTree {
     }
 
     public boolean contains(int value) {
-        if (this.root == null){
+        if (this.root == null) {
             return false;
         }
         return contains(this.root, value);
@@ -85,16 +85,14 @@ public class BinarySearchTree {
 
     private boolean contains(Node current, int value) {
         boolean result = false;
-        if(current == null){
-            return false;
-        }
-        if (current.getValue() == value){
-            return true;
-        }
-        if(current.getValue() > value){
-            result = contains(current.getLeft(), value);
-        } else{
-            result = contains(current.getRight(), value);
+        if (current != null) {
+            if (current.getValue() == value) {
+                result = true;
+            } else if (current.getValue() > value) {
+                result = contains(current.getLeft(), value);
+            } else {
+                result = contains(current.getRight(), value);
+            }
         }
         return result;
     }
