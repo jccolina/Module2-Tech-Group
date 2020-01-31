@@ -21,7 +21,7 @@ public class BinarySearchTreeTest {
         myTree.add(9);
         myTree.add(3);
 
-//        assertEquals(3, myTree.getLevel());
+        assertEquals(4, myTree.getLevel());
         assertEquals(8, myTree.size());
     }
 
@@ -42,7 +42,6 @@ public class BinarySearchTreeTest {
     }
 
     @Test
-    @Ignore
     public void testLevel() {
         BinarySearchTree myTree = new BinarySearchTree();
 
@@ -55,7 +54,7 @@ public class BinarySearchTreeTest {
         myTree.add(9);
         myTree.add(3);
 
-        assertEquals(3, myTree.getLevel());
+        assertEquals(4, myTree.getLevel());
     }
     @Test
     public void testContains() {

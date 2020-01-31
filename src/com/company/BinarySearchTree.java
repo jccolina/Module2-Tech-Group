@@ -4,6 +4,7 @@ public class BinarySearchTree {
     private Node root;
     private int level;
     private int size;
+    private static final int INITIAL_LEVEL = 0;
 
 
     public boolean add(int value) {
@@ -14,7 +15,7 @@ public class BinarySearchTree {
             this.size++;
             result = true;
         } else {
-            result = add(root, newNode);
+            result = add(root, newNode, INITIAL_LEVEL);
             if (result) {
                 this.size++;
             }
@@ -22,21 +23,28 @@ public class BinarySearchTree {
         return result;
     }
 
-    private boolean add(Node cursor, Node newNode) {
+    private boolean add(Node cursor, Node newNode, int currentLevel) {
+        currentLevel++;
         boolean result = false;
         if (newNode.getValue() > cursor.getValue()) {
             if (cursor.getRight() == null) {
                 cursor.setRight(newNode);
                 result = true;
+                if(currentLevel > this.level){
+                    this.level = currentLevel;
+                }
             } else {
-                return add(cursor.getRight(), newNode);
+                return add(cursor.getRight(), newNode, currentLevel);
             }
         } else if (newNode.getValue() < cursor.getValue()) {
             if (cursor.getLeft() == null) {
                 cursor.setLeft(newNode);
                 result = true;
+                if(currentLevel > this.level){
+                    this.level = currentLevel;
+                }
             } else {
-                return add(cursor.getLeft(), newNode);
+                return add(cursor.getLeft(), newNode, currentLevel);
             }
         }
         return result;
