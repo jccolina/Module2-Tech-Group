@@ -59,22 +59,39 @@ public class BinarySearchTree {
     }
 
     @Override
-    public String toString() {
-        StringBuilder builder = new StringBuilder("[");
-
-        visit(root, builder);
-
-        builder.append("]");
-        return builder.toString();
+    public String toString(){
+        String result = "[";
+        result = this.toString(this.root, result);
+        result = result.substring(0, result.length()-1);
+        result += "]";
+        return result;
     }
-
-    private void visit(Node cursor, StringBuilder builder) {
-        if (cursor == null) return;
-
-        visit(cursor.getLeft(), builder);
-        builder.append(cursor.getValue());
-        visit(cursor.getRight(), builder);
+    private String toString(Node current, String previousResult){
+        String result;
+        if(current == null){
+            return previousResult;
+        }
+        result = this.toString(current.getLeft(), previousResult);
+        result = result.concat(current.getValue() + ",");
+        result = this.toString(current.getRight(), result);
+        return result;
     }
+//    public String toString() {
+//        StringBuilder builder = new StringBuilder("[");
+//
+//        visit(root, builder);
+//
+//        builder.append("]");
+//        return builder.toString();
+//    }
+//
+//    private void visit(Node cursor, StringBuilder builder) {
+//        if (cursor == null) return;
+//
+//        visit(cursor.getLeft(), builder);
+//        builder.append(cursor.getValue());
+//        visit(cursor.getRight(), builder);
+//    }
 
     public boolean contains(int value) {
         if (this.root == null) {

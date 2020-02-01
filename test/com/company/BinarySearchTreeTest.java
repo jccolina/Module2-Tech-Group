@@ -38,7 +38,7 @@ public class BinarySearchTreeTest {
         myTree.add(2);
         myTree.add(4);
 
-        assertEquals("[234678910]", myTree.toString());
+        assertEquals("[2,3,4,6,7,8,9,10]", myTree.toString());
     }
 
     @Test
