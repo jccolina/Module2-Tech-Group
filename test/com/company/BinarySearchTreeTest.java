@@ -87,4 +87,27 @@ public class BinarySearchTreeTest {
         assertFalse(myTree.contains(0));
         assertFalse(myTree.contains(100));
     }
+    @Test
+    public void testRemove() {
+        BinarySearchTree myTree = new BinarySearchTree();
+
+        myTree.add(8);
+        myTree.add(10);
+        myTree.add(4);
+        myTree.add(9);
+        myTree.add(12);
+        myTree.add(2);
+        myTree.add(6);
+        myTree.add(5);
+        myTree.add(7);
+
+        assertEquals("[2,4,5,6,7,8,9,10,12]", myTree.toString());
+
+        assertTrue(myTree.remove(4));
+
+        assertEquals("[2,5,6,7,8,9,10,12]", myTree.toString());
+
+
+
+    }
 }

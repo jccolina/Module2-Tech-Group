@@ -59,16 +59,17 @@ public class BinarySearchTree {
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         String result = "[";
         result = this.toString(this.root, result);
-        result = result.substring(0, result.length()-1);
+        result = result.substring(0, result.length() - 1);
         result += "]";
         return result;
     }
-    private String toString(Node current, String previousResult){
+
+    private String toString(Node current, String previousResult) {
         String result;
-        if(current == null){
+        if (current == null) {
             return previousResult;
         }
         result = this.toString(current.getLeft(), previousResult);
@@ -112,5 +113,59 @@ public class BinarySearchTree {
             }
         }
         return result;
+    }
+
+    public boolean remove(int value) {
+        boolean result = false;
+        result = remove(this.root, null, value);
+        return result;
+    }
+
+    private boolean remove(Node cursor, Node parent, int value) {
+        if (cursor == null) {
+            return false;
+        }
+        boolean result = false;
+        if (cursor.getValue() == value) {
+            if (cursor.getRight() != null && cursor.getLeft() != null) {
+                int minRight = this.minRight(cursor.getRight());
+                cursor.setValue(minRight);
+                remove(cursor.getRight(), cursor, minRight);
+
+            } else if (cursor.getRight() != null) {
+                if (cursor.getValue() < parent.getValue()) {
+                    parent.setLeft(cursor.getRight());
+                } else {
+                    parent.setRight(cursor.getRight());
+                }
+            } else if (cursor.getLeft() != null) {
+                if (cursor.getValue() < parent.getValue()) {
+                    parent.setLeft(cursor.getLeft());
+                } else {
+                    parent.setRight(cursor.getLeft());
+                }
+            } else {
+                if (cursor.getValue() < parent.getValue()) {
+                    parent.setLeft(null);
+                } else {
+                    parent.setRight(null);
+                }
+            }
+            result = true;
+        } else if (value < cursor.getValue()) {
+            result = remove(cursor.getLeft(), cursor, value);
+        } else {
+            result = remove(cursor.getRight(), cursor, value);
+        }
+        return result;
+    }
+
+    private int minRight(Node cursor) {
+        int minValue =0;
+        while(cursor != null){
+            minValue = cursor.getValue();
+            cursor = cursor.getLeft();
+        }
+        return minValue;
     }
 }
