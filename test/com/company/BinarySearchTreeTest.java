@@ -75,7 +75,60 @@ public class BinarySearchTreeTest {
         ColorNode leftRoot = root.getLeft();
         ColorNode rightRoot = root.getRight();
 
+        assertEquals(root, newRoot);
         assertEquals(7, root.getValue());
+        assertEquals(8, rightRoot.getValue());
+        assertEquals(-1, rightRoot.getRight().getValue());
+        assertEquals(-1, rightRoot.getLeft().getValue());
+        assertEquals(5, leftRoot.getValue());
+        assertEquals(4, leftRoot.getLeft().getValue());
+        assertEquals(6, leftRoot.getRight().getValue());
+    }
+    @Test
+    public void testLeftRotateInRightLeaf() {
+        RedBlackBST myTree = new RedBlackBST();
+
+        myTree.add(2);
+        myTree.add(1);
+        myTree.add(5); //leaf to rotate
+        myTree.add(4);
+        myTree.add(7);
+        myTree.add(6);
+        myTree.add(8);
+        ColorNode nodeToRotate = myTree.getRoot().getRight();
+        ColorNode newRoot = myTree.leftRotate(nodeToRotate);
+        ColorNode nodeRotated = myTree.getRoot().getRight();
+        ColorNode leftRoot = nodeRotated.getLeft();
+        ColorNode rightRoot = nodeRotated.getRight();
+
+        assertEquals(nodeRotated, newRoot);
+        assertEquals(7, nodeRotated.getValue());
+        assertEquals(8, rightRoot.getValue());
+        assertEquals(-1, rightRoot.getRight().getValue());
+        assertEquals(-1, rightRoot.getLeft().getValue());
+        assertEquals(5, leftRoot.getValue());
+        assertEquals(4, leftRoot.getLeft().getValue());
+        assertEquals(6, leftRoot.getRight().getValue());
+    }
+    @Test
+    public void testLeftRotateInLeftLeaf() {
+        RedBlackBST myTree = new RedBlackBST();
+
+        myTree.add(10);
+        myTree.add(12);
+        myTree.add(5);
+        myTree.add(4);
+        myTree.add(7);
+        myTree.add(6);
+        myTree.add(8);
+        ColorNode nodeToRotate = myTree.getRoot().getLeft();
+        ColorNode newRoot = myTree.leftRotate(nodeToRotate);
+        ColorNode nodeRotated = myTree.getRoot().getLeft();
+        ColorNode leftRoot = nodeRotated.getLeft();
+        ColorNode rightRoot = nodeRotated.getRight();
+
+        assertEquals(nodeRotated, newRoot);
+        assertEquals(7, nodeRotated.getValue());
         assertEquals(8, rightRoot.getValue());
         assertEquals(-1, rightRoot.getRight().getValue());
         assertEquals(-1, rightRoot.getLeft().getValue());
@@ -98,6 +151,59 @@ public class BinarySearchTreeTest {
         ColorNode leftRoot = root.getLeft();
         ColorNode rightRoot = root.getRight();
 
+        assertEquals(root, newRoot);
+        assertEquals(5, root.getValue());
+        assertEquals(7, rightRoot.getValue());
+        assertEquals(8, rightRoot.getRight().getValue());
+        assertEquals(6, rightRoot.getLeft().getValue());
+        assertEquals(4, leftRoot.getValue());
+        assertEquals(-1, leftRoot.getLeft().getValue());
+        assertEquals(-1, leftRoot.getRight().getValue());
+    }
+    @Test
+    public void testRightRotateInRightLeaf() {
+        RedBlackBST myTree = new RedBlackBST();
+
+        myTree.add(2);
+        myTree.add(1);
+        myTree.add(7);
+        myTree.add(5);
+        myTree.add(8);
+        myTree.add(4);
+        myTree.add(6);
+        ColorNode root = myTree.getRoot().getRight();
+        ColorNode newRoot = myTree.rightRotate(root);
+        root = myTree.getRoot().getRight();
+        ColorNode leftRoot = root.getLeft();
+        ColorNode rightRoot = root.getRight();
+
+        assertEquals(root, newRoot);
+        assertEquals(5, root.getValue());
+        assertEquals(7, rightRoot.getValue());
+        assertEquals(8, rightRoot.getRight().getValue());
+        assertEquals(6, rightRoot.getLeft().getValue());
+        assertEquals(4, leftRoot.getValue());
+        assertEquals(-1, leftRoot.getLeft().getValue());
+        assertEquals(-1, leftRoot.getRight().getValue());
+    }
+    @Test
+    public void testRightRotateInLeftLeaf() {
+        RedBlackBST myTree = new RedBlackBST();
+
+        myTree.add(10);
+        myTree.add(12);
+        myTree.add(7);
+        myTree.add(5);
+        myTree.add(8);
+        myTree.add(4);
+        myTree.add(6);
+        ColorNode root = myTree.getRoot().getLeft();
+        ColorNode newRoot = myTree.rightRotate(root);
+        root = myTree.getRoot().getLeft();
+        ColorNode leftRoot = root.getLeft();
+        ColorNode rightRoot = root.getRight();
+
+        assertEquals(root, newRoot);
         assertEquals(5, root.getValue());
         assertEquals(7, rightRoot.getValue());
         assertEquals(8, rightRoot.getRight().getValue());

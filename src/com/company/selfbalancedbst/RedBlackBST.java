@@ -53,7 +53,23 @@ public class RedBlackBST {
     }
 
     public ColorNode rightRotate(ColorNode node) {
-        return null;
+        ColorNode parent = node.getParent();
+        ColorNode aux = node.getLeft();
+        aux.setParent(parent);
+        node.setLeft(aux.getRight());
+        aux.setRight(node);
+        node.setParent(aux);
+        node.getLeft().setParent(node);
+        if (parent != null) {
+            if (parent.getRight() == node)  {
+                parent.setRight(aux);
+            } else {
+                parent.setLeft(aux);
+            }
+        } else {
+            root = aux;
+        }
+        return aux;
     }
 
     private void fixTree(ColorNode node) {
